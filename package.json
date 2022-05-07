@@ -1,0 +1,19 @@
+{
+  "name": "default-subgraph",
+  "version": "0.1.0",
+  "scripts": {
+    "create": "graph create zaqk/fun-and-games-sg --node https://api.thegraph.com/deploy/",
+    "create-local": "graph create zaqk/fun-and-games-sg --node http://127.0.0.1:8020",
+    "codegen": "graph codegen",
+    "build": "graph build",    
+    "deploy-local": "graph deploy zaqk/fun-and-games-sg --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
+    "test": "graph build && graph test DefaultOSFactory && graph test DefaultOS && graph test Epoch && graph test Members && graph test PeerRewards"
+  },
+  "devDependencies": {
+    "@graphprotocol/graph-cli": "^0.22.0",
+    "matchstick-as": "^0.1.5"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-ts": "^0.22.1"
+  }
+}

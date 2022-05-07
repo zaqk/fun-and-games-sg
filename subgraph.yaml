@@ -1,0 +1,85 @@
+specVersion: 0.0.2
+description: Default Subgraph
+repository: https://github.com/
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Cashier
+    network: ethereum
+    source:
+      abi: Cashier
+      address: '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512'
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Cashier
+      abis:
+        - name: Cashier
+          file: ./abis/Cashier.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/mappings/Cashier.ts
+  - kind: ethereum/contract
+    name: Account
+    network: ethereum
+    source:
+      abi: Account
+      address: '0x5FbDB2315678afecb367f032d93F642f64180aa3'
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Account
+      abis:
+        - name: Account
+          file: ./abis/Account.json
+      eventHandlers:
+        - event: Registed(indexed address,indexed bytes32)
+          handler: handleRegistration
+      file: ./src/mappings/Account.ts
+  - kind: ethereum/contract
+    name: GameDirectory
+    network: ethereum
+    source:
+      abi: GameDirectory
+      address: '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0'
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - GameDirectory
+        - Game
+      abis:
+        - name: GameDirectory
+          file: ./abis/GameDirectory.json
+      eventHandlers:
+        - event: GameCreated(indexed address,indexed address)
+          handler: handleGameCreated
+      file: ./src/mappings/GameDirectory.ts
+templates:
+  - name: Game
+    kind: ethereum/contract
+    network: ethereum
+    source:
+      abi: Game
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/Game.ts
+      entities:
+        - Game
+      abis:
+        - name: Game
+          file: ./abis/Game.json
+      eventHandlers:
+        - event: AdminUpdated(indexed address,indexed address,bool)
+          handler: handleAdminUpdated
