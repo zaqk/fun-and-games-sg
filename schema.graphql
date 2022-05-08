@@ -1,23 +1,20 @@
 type Player @entity {
   id: ID!     # address
   name: String
-  totalApprovals: BigInt!  # total credit across all games
-  totalCreditInWallet: BigInt! # total amount of chips in wallet
 }
 
 type Game @entity {
   id: ID! # contract address
   host: Player!
   players: [Session!]! @derivedFrom(field: "game")
-  totalApprovals: BigInt!  # total approved for this game
   totalCredits: BigInt!  # total chips currently in game
+  playerCount: BigInt!  # total players with chips in game
 }
 
 type Session @entity {
   id: ID! # {game address}-{player address}
   game: Game!
   player: Player!
-  approved: BigInt!  # total approved for this game by this player
   credits: BigInt! # total chips currently in game for this player
   isAdmin: Boolean!
 }

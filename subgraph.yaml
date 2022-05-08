@@ -6,7 +6,7 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Cashier
-    network: ethereum
+    network: mainnet
     source:
       abi: Cashier
       address: '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512'
@@ -27,7 +27,7 @@ dataSources:
       file: ./src/mappings/Cashier.ts
   - kind: ethereum/contract
     name: Account
-    network: ethereum
+    network: mainnet
     source:
       abi: Account
       address: '0x5FbDB2315678afecb367f032d93F642f64180aa3'
@@ -46,7 +46,7 @@ dataSources:
       file: ./src/mappings/Account.ts
   - kind: ethereum/contract
     name: GameDirectory
-    network: ethereum
+    network: mainnet
     source:
       abi: GameDirectory
       address: '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0'
@@ -67,7 +67,7 @@ dataSources:
 templates:
   - name: Game
     kind: ethereum/contract
-    network: ethereum
+    network: mainnet
     source:
       abi: Game
     mapping:
