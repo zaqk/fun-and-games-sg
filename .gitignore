@@ -67,4 +67,4 @@ typings/
 build
 
 # docker graph node
-graph-node-docker-file/data
+docker/data
